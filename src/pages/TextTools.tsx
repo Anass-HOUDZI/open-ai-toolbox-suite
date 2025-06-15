@@ -3,48 +3,54 @@ import Header from "@/components/layout/Header";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
-const VisualTools = () => {
+const TextTools = () => {
   const tools = [
     {
-      name: "AI Avatar Generator",
-      description: "Créez des avatars personnalisés avec l'API DiceBear",
-      path: "/tools/avatar-generator",
+      name: "Text Summarizer",
+      description: "Résumé automatique de texte avec contrôle de longueur",
+      path: "/tools/text-summarizer",
       status: "available"
     },
     {
-      name: "QR Code Art Generator",
-      description: "Génération de QR codes artistiques et personnalisables",
-      path: "/tools/qr-generator",
-      status: "available"
-    },
-    {
-      name: "Color Palette Extractor",
-      description: "Extraction de palettes depuis vos images",
-      path: "/tools/color-palette-extractor",
-      status: "available"
-    },
-    {
-      name: "Icon Generator",
-      description: "Accès à plus de 12,000 icônes Tabler",
-      path: "/tools/icon-generator",
+      name: "Language Detector",
+      description: "Détection automatique de langue avec probabilités",
+      path: "/tools/language-detector",
       status: "coming-soon"
     },
     {
-      name: "Pattern Generator",
-      description: "Création de motifs géométriques algorithmiques",
-      path: "/tools/pattern-generator",
+      name: "Grammar Checker",
+      description: "Correction grammaire et orthographe temps réel",
+      path: "/tools/grammar-checker",
       status: "coming-soon"
     },
     {
-      name: "Gradient Creator",
-      description: "Générateur de dégradés CSS avancé",
-      path: "/tools/gradient-creator",
+      name: "Text to Speech",
+      description: "Synthèse vocale multilingue avec contrôles",
+      path: "/tools/text-to-speech",
       status: "coming-soon"
     },
     {
-      name: "Favicon Maker",
-      description: "Création de favicons multi-formats",
-      path: "/tools/favicon-maker",
+      name: "Word Frequency Analyzer",
+      description: "Analyse fréquence mots avec visualisations",
+      path: "/tools/word-frequency",
+      status: "coming-soon"
+    },
+    {
+      name: "Text Encryption",
+      description: "Chiffrement/déchiffrement de texte sécurisé",
+      path: "/tools/text-encryption",
+      status: "coming-soon"
+    },
+    {
+      name: "Markdown Editor",
+      description: "Éditeur Markdown avec preview temps réel",
+      path: "/tools/markdown-editor",
+      status: "coming-soon"
+    },
+    {
+      name: "Text Comparison",
+      description: "Comparaison avancée de textes avec diff",
+      path: "/tools/text-comparison",
       status: "coming-soon"
     }
   ];
@@ -53,16 +59,16 @@ const VisualTools = () => {
     <div className="min-h-screen">
       <Header />
       
-      <div className="bg-gradient-visual text-white py-16">
+      <div className="bg-gradient-text text-white py-16">
         <div className="container">
           <div className="flex items-center mb-4">
             <Link to="/" className="text-white/70 hover:text-white mr-2">Accueil</Link>
             <span className="text-white/50">/</span>
-            <span className="ml-2">Création Visuelle</span>
+            <span className="ml-2">Traitement Texte</span>
           </div>
-          <h1 className="text-5xl font-bold mb-4">🎨 Création Visuelle</h1>
+          <h1 className="text-5xl font-bold mb-4">📝 Traitement de Texte</h1>
           <p className="text-xl text-white/90 max-w-2xl">
-            Libérez votre créativité avec nos outils de création visuelle. Avatars, QR codes, palettes de couleurs et bien plus.
+            Analysez, transformez et optimisez vos contenus textuels avec nos outils d'intelligence artificielle.
           </p>
         </div>
       </div>
@@ -77,7 +83,7 @@ const VisualTools = () => {
                 
                 {tool.status === "available" ? (
                   <Link to={tool.path}>
-                    <Button className="w-full bg-gradient-visual hover:opacity-90">
+                    <Button className="w-full bg-gradient-text hover:opacity-90">
                       Utiliser l'outil
                     </Button>
                   </Link>
@@ -95,4 +101,4 @@ const VisualTools = () => {
   );
 };
 
-export default VisualTools;
+export default TextTools;
