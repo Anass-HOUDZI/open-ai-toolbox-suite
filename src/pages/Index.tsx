@@ -151,8 +151,10 @@ const Index = () => {
       </section>
 
       {/* Features Section Enhanced */}
-      <section className="py-10 bg-white">
+      <section className="py-20 bg-white">
         <div className="container">
+          
+          
           <div className="grid md:grid-cols-3 gap-8">
             {features.map((feature, index) => <div key={index} className="group relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-100 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
