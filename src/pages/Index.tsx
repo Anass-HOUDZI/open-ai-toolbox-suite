@@ -3,80 +3,74 @@ import CategoryCard from "@/components/CategoryCard";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap, Shield, Heart, Star, Users, Sparkles } from "lucide-react";
 import Footer from "@/components/layout/Footer";
-
 const Index = () => {
-  const categories = [
-    {
-      title: "Création Visuelle",
-      description: "Avatars, QR codes artistiques, palettes de couleurs, icônes et bien plus pour vos créations visuelles.",
-      toolCount: 7,
-      icon: "🎨",
-      gradient: "bg-gradient-visual",
-      path: "/visual"
-    },
-    {
-      title: "Traitement de Texte",
-      description: "Analyse, résumé, détection de langue et outils avancés pour optimiser vos contenus textuels.",
-      toolCount: 8,
-      icon: "📝",
-      gradient: "bg-gradient-text",
-      path: "/text"
-    },
-    {
-      title: "Outils Développement",
-      description: "JSON, Base64, Hash, Regex et tous les utilitaires essentiels pour les développeurs.",
-      toolCount: 10,
-      icon: "🔧",
-      gradient: "bg-gradient-dev",
-      path: "/dev"
-    },
-    {
-      title: "Audio & Image",
-      description: "Compression, conversion, visualisation audio et manipulation d'images en temps réel.",
-      toolCount: 5,
-      icon: "🎵",
-      gradient: "bg-gradient-media",
-      path: "/media"
-    }
-  ];
-
-  const features = [
-    {
-      icon: <Zap className="w-8 h-8" />,
-      title: "Ultra Rapide",
-      description: "Traitement instantané côté client, pas d'attente serveur",
-      gradient: "from-yellow-400 to-orange-500"
-    },
-    {
-      icon: <Shield className="w-8 h-8" />,
-      title: "100% Privé",
-      description: "Vos données ne quittent jamais votre navigateur",
-      gradient: "from-blue-400 to-purple-500"
-    },
-    {
-      icon: <Heart className="w-8 h-8" />,
-      title: "Totalement Gratuit",
-      description: "Aucun coût caché, aucune limite d'utilisation",
-      gradient: "from-pink-400 to-red-500"
-    }
-  ];
-
-  const stats = [
-    { number: "30+", label: "Outils Disponibles" },
-    { number: "100%", label: "Côté Client" },
-    { number: "0€", label: "Coût Total" },
-    { number: "∞", label: "Utilisation Illimitée" }
-  ];
-
+  const categories = [{
+    title: "Création Visuelle",
+    description: "Avatars, QR codes artistiques, palettes de couleurs, icônes et bien plus pour vos créations visuelles.",
+    toolCount: 7,
+    icon: "🎨",
+    gradient: "bg-gradient-visual",
+    path: "/visual"
+  }, {
+    title: "Traitement de Texte",
+    description: "Analyse, résumé, détection de langue et outils avancés pour optimiser vos contenus textuels.",
+    toolCount: 8,
+    icon: "📝",
+    gradient: "bg-gradient-text",
+    path: "/text"
+  }, {
+    title: "Outils Développement",
+    description: "JSON, Base64, Hash, Regex et tous les utilitaires essentiels pour les développeurs.",
+    toolCount: 10,
+    icon: "🔧",
+    gradient: "bg-gradient-dev",
+    path: "/dev"
+  }, {
+    title: "Audio & Image",
+    description: "Compression, conversion, visualisation audio et manipulation d'images en temps réel.",
+    toolCount: 5,
+    icon: "🎵",
+    gradient: "bg-gradient-media",
+    path: "/media"
+  }];
+  const features = [{
+    icon: <Zap className="w-8 h-8" />,
+    title: "Ultra Rapide",
+    description: "Traitement instantané côté client, pas d'attente serveur",
+    gradient: "from-yellow-400 to-orange-500"
+  }, {
+    icon: <Shield className="w-8 h-8" />,
+    title: "100% Privé",
+    description: "Vos données ne quittent jamais votre navigateur",
+    gradient: "from-blue-400 to-purple-500"
+  }, {
+    icon: <Heart className="w-8 h-8" />,
+    title: "Totalement Gratuit",
+    description: "Aucun coût caché, aucune limite d'utilisation",
+    gradient: "from-pink-400 to-red-500"
+  }];
+  const stats = [{
+    number: "30+",
+    label: "Outils Disponibles"
+  }, {
+    number: "100%",
+    label: "Côté Client"
+  }, {
+    number: "0€",
+    label: "Coût Total"
+  }, {
+    number: "∞",
+    label: "Utilisation Illimitée"
+  }];
   const scrollToTools = () => {
     const toolsSection = document.getElementById('tools-section');
     if (toolsSection) {
-      toolsSection.scrollIntoView({ behavior: 'smooth' });
+      toolsSection.scrollIntoView({
+        behavior: 'smooth'
+      });
     }
   };
-
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Header />
       
       {/* Hero Section Enhanced */}
@@ -87,7 +81,9 @@ const Index = () => {
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse" style={{
+          animationDelay: '1s'
+        }} />
         </div>
         
         <div className="container relative z-10 text-center text-white">
@@ -110,23 +106,19 @@ const Index = () => {
             </p>
             
             <div className="flex justify-center mb-12">
-              <Button 
-                size="lg" 
-                className="bg-white text-purple-600 hover:bg-white/90 font-semibold px-8 py-4 rounded-full"
-                onClick={scrollToTools}
-              >
+              <Button size="lg" className="bg-white text-purple-600 hover:bg-white/90 font-semibold px-8 py-4 rounded-full" onClick={scrollToTools}>
                 Découvrir les outils
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </div>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center animate-scale-in" style={{ animationDelay: `${index * 0.2}s` }}>
+              {stats.map((stat, index) => <div key={index} className="text-center animate-scale-in" style={{
+              animationDelay: `${index * 0.2}s`
+            }}>
                   <div className="text-3xl font-bold mb-1">{stat.number}</div>
                   <div className="text-sm text-white/80">{stat.label}</div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
@@ -149,11 +141,11 @@ const Index = () => {
           </div>
           
           <div className="grid md:grid-cols-2 gap-8">
-            {categories.map((category, index) => (
-              <div key={category.title} className="animate-scale-in" style={{ animationDelay: `${index * 0.1}s` }}>
+            {categories.map((category, index) => <div key={category.title} className="animate-scale-in" style={{
+            animationDelay: `${index * 0.1}s`
+          }}>
                 <CategoryCard {...category} />
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -167,8 +159,7 @@ const Index = () => {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div key={index} className="group relative">
+            {features.map((feature, index) => <div key={index} className="group relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-100 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
                 <div className="relative text-center p-8 rounded-2xl border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-xl">
                   <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-r ${feature.gradient} text-white mb-6`}>
@@ -177,33 +168,16 @@ const Index = () => {
                   <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
                   <p className="text-gray-600 leading-relaxed">{feature.description}</p>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-purple-600 to-blue-600">
-        <div className="container text-center text-white">
-          <div className="max-w-3xl mx-auto">
-            <Users className="w-16 h-16 mx-auto mb-6 opacity-80" />
-            <h2 className="text-4xl font-bold mb-4">Rejoignez des milliers d'utilisateurs</h2>
-            <p className="text-xl text-white/90 mb-8">
-              Découvrez pourquoi OpenToolsAI est devenu l'écosystème d'outils préféré des professionnels
-            </p>
-            <Button size="lg" className="bg-white text-purple-600 hover:bg-white/90 font-semibold px-8 py-4 rounded-full">
-              Commencer maintenant
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-          </div>
-        </div>
-      </section>
+      
 
       {/* Footer Enhanced */}
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
