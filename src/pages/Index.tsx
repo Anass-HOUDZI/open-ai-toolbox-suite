@@ -151,23 +151,7 @@ const Index = () => {
       </section>
 
       {/* Features Section Enhanced */}
-      <section className="py-28 bg-white">
-        <div className="container">
-          {/* Features grid */}
-          <div className="grid md:grid-cols-3 gap-8">
-            {features.map((feature, index) => <div key={index} className="group relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-100 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
-                <div className="relative text-center p-8 rounded-2xl border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-xl">
-                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-r ${feature.gradient} text-white mb-6`}>
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{feature.description}</p>
-                </div>
-              </div>)}
-          </div>
-        </div>
-      </section>
+      
 
       {/* CTA Section */}
       
