@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
-import { Copy, Refresh, Key, Shield, AlertTriangle, CheckCircle } from "lucide-react";
+import { Copy, RefreshCw, Key, Shield, AlertTriangle, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
 
 const PasswordGenerator = () => {
@@ -144,7 +144,7 @@ const PasswordGenerator = () => {
                     <Checkbox 
                       id="uppercase" 
                       checked={includeUppercase}
-                      onCheckedChange={setIncludeUppercase}
+                      onCheckedChange={(checked) => setIncludeUppercase(checked === true)}
                     />
                     <label htmlFor="uppercase" className="text-sm">Majuscules (A-Z)</label>
                   </div>
@@ -152,7 +152,7 @@ const PasswordGenerator = () => {
                     <Checkbox 
                       id="lowercase" 
                       checked={includeLowercase}
-                      onCheckedChange={setIncludeLowercase}
+                      onCheckedChange={(checked) => setIncludeLowercase(checked === true)}
                     />
                     <label htmlFor="lowercase" className="text-sm">Minuscules (a-z)</label>
                   </div>
@@ -160,7 +160,7 @@ const PasswordGenerator = () => {
                     <Checkbox 
                       id="numbers" 
                       checked={includeNumbers}
-                      onCheckedChange={setIncludeNumbers}
+                      onCheckedChange={(checked) => setIncludeNumbers(checked === true)}
                     />
                     <label htmlFor="numbers" className="text-sm">Chiffres (0-9)</label>
                   </div>
@@ -168,7 +168,7 @@ const PasswordGenerator = () => {
                     <Checkbox 
                       id="symbols" 
                       checked={includeSymbols}
-                      onCheckedChange={setIncludeSymbols}
+                      onCheckedChange={(checked) => setIncludeSymbols(checked === true)}
                     />
                     <label htmlFor="symbols" className="text-sm">Symboles (!@#$%...)</label>
                   </div>
@@ -176,7 +176,7 @@ const PasswordGenerator = () => {
                     <Checkbox 
                       id="exclude" 
                       checked={excludeSimilar}
-                      onCheckedChange={setExcludeSimilar}
+                      onCheckedChange={(checked) => setExcludeSimilar(checked === true)}
                     />
                     <label htmlFor="exclude" className="text-sm">Exclure caractères similaires (i, l, 1, L, o, 0, O)</label>
                   </div>
@@ -198,7 +198,7 @@ const PasswordGenerator = () => {
                   onClick={generatePassword} 
                   className="w-full bg-gradient-to-r from-red-500 to-orange-600 hover:opacity-90"
                 >
-                  <Refresh className="w-4 h-4 mr-2" />
+                  <RefreshCw className="w-4 h-4 mr-2" />
                   Générer mot de passe
                 </Button>
               </CardContent>
