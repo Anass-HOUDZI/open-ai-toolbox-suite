@@ -153,10 +153,7 @@ const Index = () => {
       {/* Features Section Enhanced */}
       <section className="py-20 bg-white">
         <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Pourquoi nous choisir ?</h2>
-            <p className="text-xl text-gray-600">Une expérience utilisateur sans compromis</p>
-          </div>
+          
           
           <div className="grid md:grid-cols-3 gap-8">
             {features.map((feature, index) => <div key={index} className="group relative">
