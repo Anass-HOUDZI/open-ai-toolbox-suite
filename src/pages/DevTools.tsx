@@ -1,3 +1,4 @@
+
 import Header from "@/components/layout/Header";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -50,6 +51,18 @@ const DevTools = () => {
       name: "SQL Formatter",
       description: "Formatage et optimisation requêtes SQL",
       path: "/tools/sql-formatter",
+      status: "available"
+    },
+    {
+      name: "CSS Minifier",
+      description: "Minification et optimisation CSS avancée",
+      path: "/tools/css-minifier",
+      status: "available"
+    },
+    {
+      name: "HTML Validator",
+      description: "Validation HTML et détection d'erreurs",
+      path: "/tools/html-validator",
       status: "available"
     }
   ];

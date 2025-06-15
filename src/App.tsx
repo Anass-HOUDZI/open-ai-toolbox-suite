@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -41,6 +40,8 @@ import TextEncryption from "./pages/tools/TextEncryption";
 import MarkdownEditor from "./pages/tools/MarkdownEditor";
 import TextComparison from "./pages/tools/TextComparison";
 import NotFound from "./pages/NotFound";
+import CSSMinifier from "./pages/tools/CSSMinifier";
+import HTMLValidator from "./pages/tools/HTMLValidator";
 
 const queryClient = new QueryClient();
 
@@ -87,6 +88,8 @@ const App = () => (
           <Route path="/tools/text-encryption" element={<TextEncryption />} />
           <Route path="/tools/markdown-editor" element={<MarkdownEditor />} />
           <Route path="/tools/text-comparison" element={<TextComparison />} />
+          <Route path="/tools/css-minifier" element={<CSSMinifier />} />
+          <Route path="/tools/html-validator" element={<HTMLValidator />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
