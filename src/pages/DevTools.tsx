@@ -27,7 +27,7 @@ const DevTools = () => {
       name: "Hash Generator",
       description: "Génération MD5, SHA1, SHA256 sécurisée",
       path: "/tools/hash-generator",
-      status: "coming-soon"
+      status: "available"
     },
     {
       name: "URL Shortener",

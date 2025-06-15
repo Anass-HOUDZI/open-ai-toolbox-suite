@@ -12,15 +12,15 @@ const MediaTools = () => {
       status: "available"
     },
     {
-      name: "Image Format Converter",
-      description: "Conversion entre formats JPEG, PNG, WebP, AVIF",
-      path: "/tools/image-converter",
-      status: "coming-soon"
-    },
-    {
       name: "Audio Visualizer",
       description: "Visualisation spectrale audio temps réel",
       path: "/tools/audio-visualizer",
+      status: "available"
+    },
+    {
+      name: "Image Format Converter",
+      description: "Conversion entre formats JPEG, PNG, WebP, AVIF",
+      path: "/tools/image-converter",
       status: "coming-soon"
     },
     {
@@ -41,7 +41,7 @@ const MediaTools = () => {
     <div className="min-h-screen">
       <Header />
       
-      <div className="bg-gradient-to-br from-pink-500 to-purple-600 text-white py-16">
+      <div className="bg-gradient-media text-white py-16">
         <div className="container">
           <div className="flex items-center mb-4">
             <Link to="/" className="text-white/70 hover:text-white mr-2">Accueil</Link>
@@ -65,7 +65,7 @@ const MediaTools = () => {
                 
                 {tool.status === "available" ? (
                   <Link to={tool.path}>
-                    <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:opacity-90">
+                    <Button className="w-full bg-gradient-media hover:opacity-90">
                       Utiliser l'outil
                     </Button>
                   </Link>

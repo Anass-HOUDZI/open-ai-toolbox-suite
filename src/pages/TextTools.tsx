@@ -15,7 +15,7 @@ const TextTools = () => {
       name: "Language Detector",
       description: "Détection automatique de langue avec probabilités",
       path: "/tools/language-detector",
-      status: "coming-soon"
+      status: "available"
     },
     {
       name: "Grammar Checker",
