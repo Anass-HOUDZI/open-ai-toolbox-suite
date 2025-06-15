@@ -19,21 +19,21 @@ const MediaTools = () => {
     },
     {
       name: "Image Format Converter",
-      description: "Conversion entre formats JPEG, PNG, WebP, AVIF",
+      description: "Conversion entre formats JPEG, PNG, WebP",
       path: "/tools/image-converter",
-      status: "coming-soon"
+      status: "available"
     },
     {
       name: "Background Remover",
-      description: "Suppression arrière-plan IA avec Remove.bg",
+      description: "Suppression arrière-plan avec IA (démo)",
       path: "/tools/background-remover",
-      status: "coming-soon"
+      status: "available"
     },
     {
       name: "Barcode Generator",
       description: "Génération codes-barres multiples formats",
       path: "/tools/barcode-generator",
-      status: "coming-soon"
+      status: "available"
     }
   ];
 
