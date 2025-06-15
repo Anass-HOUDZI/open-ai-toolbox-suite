@@ -9,16 +9,24 @@ import { useState } from "react";
 import { Search, Download, Copy, Palette } from "lucide-react";
 import { toast } from "sonner";
 import * as LucideIcons from "lucide-react";
+import { LucideProps } from "lucide-react";
+
+// Type pour les composants d'icônes Lucide
+type LucideIcon = React.ForwardRefExoticComponent<
+  Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>
+>;
 
 const IconGenerator = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedSize, setSelectedSize] = useState(24);
   const [selectedColor, setSelectedColor] = useState("#000000");
 
-  // Get all Lucide icons
+  // Get all Lucide icons avec typage correct
   const allIcons = Object.entries(LucideIcons).filter(([name, component]) => 
-    typeof component === 'function' && name !== 'createLucideIcon'
-  );
+    typeof component === 'function' && 
+    name !== 'createLucideIcon' &&
+    name !== 'Icon'
+  ) as [string, LucideIcon][];
 
   const filteredIcons = allIcons.filter(([name]) =>
     name.toLowerCase().includes(searchTerm.toLowerCase())
