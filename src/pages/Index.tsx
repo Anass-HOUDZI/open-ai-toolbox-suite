@@ -2,6 +2,7 @@ import Header from "@/components/layout/Header";
 import CategoryCard from "@/components/CategoryCard";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap, Shield, Heart, Star, Users, Sparkles } from "lucide-react";
+import Footer from "@/components/layout/Footer";
 
 const Index = () => {
   const categories = [
@@ -200,52 +201,7 @@ const Index = () => {
       </section>
 
       {/* Footer Enhanced */}
-      <footer className="py-16 bg-gray-900 text-white">
-        <div className="container">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div className="md:col-span-2">
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-r from-purple-400 to-blue-400 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">OT</span>
-                </div>
-                <span className="text-xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                  OpenToolsAI Suite
-                </span>
-              </div>
-              <p className="text-gray-400 mb-4 max-w-md">
-                Démocratiser l'accès aux outils d'intelligence artificielle pour tous. 
-                Une suite complète d'outils gratuits et open source.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-4 text-white">Catégories</h4>
-              <div className="space-y-2 text-gray-400">
-                <div>Création Visuelle</div>
-                <div>Traitement de Texte</div>
-                <div>Développement</div>
-                <div>Sécurité</div>
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-4 text-white">Ressources</h4>
-              <div className="space-y-2 text-gray-400">
-                <div>Documentation</div>
-                <div>Guide d'utilisation</div>
-                <div>Communauté</div>
-                <div>Support</div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="border-t border-gray-800 pt-8 text-center">
-            <p className="text-gray-400">
-              Made with ❤️ by the OpenToolsAI community
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
