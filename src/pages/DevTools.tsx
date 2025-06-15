@@ -1,7 +1,7 @@
-
 import Header from "@/components/layout/Header";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import Footer from "@/components/layout/Footer";
 
 const DevTools = () => {
   const tools = [
@@ -109,6 +109,7 @@ const DevTools = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };
