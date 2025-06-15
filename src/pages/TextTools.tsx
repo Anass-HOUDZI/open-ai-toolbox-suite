@@ -21,37 +21,37 @@ const TextTools = () => {
       name: "Grammar Checker",
       description: "Correction grammaire et orthographe temps réel",
       path: "/tools/grammar-checker",
-      status: "coming-soon"
+      status: "available"
     },
     {
       name: "Text to Speech",
       description: "Synthèse vocale multilingue avec contrôles",
       path: "/tools/text-to-speech",
-      status: "coming-soon"
+      status: "available"
     },
     {
       name: "Word Frequency Analyzer",
       description: "Analyse fréquence mots avec visualisations",
       path: "/tools/word-frequency",
-      status: "coming-soon"
+      status: "available"
     },
     {
       name: "Text Encryption",
       description: "Chiffrement/déchiffrement de texte sécurisé",
       path: "/tools/text-encryption",
-      status: "coming-soon"
+      status: "available"
     },
     {
       name: "Markdown Editor",
       description: "Éditeur Markdown avec preview temps réel",
       path: "/tools/markdown-editor",
-      status: "coming-soon"
+      status: "available"
     },
     {
       name: "Text Comparison",
       description: "Comparaison avancée de textes avec diff",
       path: "/tools/text-comparison",
-      status: "coming-soon"
+      status: "available"
     }
   ];
 

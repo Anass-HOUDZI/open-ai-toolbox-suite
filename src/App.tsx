@@ -34,6 +34,12 @@ import BackgroundRemover from "./pages/tools/BackgroundRemover";
 import BarcodeGenerator from "./pages/tools/BarcodeGenerator";
 import GradientCreator from "./pages/tools/GradientCreator";
 import FaviconMaker from "./pages/tools/FaviconMaker";
+import GrammarChecker from "./pages/tools/GrammarChecker";
+import TextToSpeech from "./pages/tools/TextToSpeech";
+import WordFrequencyAnalyzer from "./pages/tools/WordFrequencyAnalyzer";
+import TextEncryption from "./pages/tools/TextEncryption";
+import MarkdownEditor from "./pages/tools/MarkdownEditor";
+import TextComparison from "./pages/tools/TextComparison";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -75,6 +81,12 @@ const App = () => (
           <Route path="/tools/barcode-generator" element={<BarcodeGenerator />} />
           <Route path="/tools/gradient-creator" element={<GradientCreator />} />
           <Route path="/tools/favicon-maker" element={<FaviconMaker />} />
+          <Route path="/tools/grammar-checker" element={<GrammarChecker />} />
+          <Route path="/tools/text-to-speech" element={<TextToSpeech />} />
+          <Route path="/tools/word-frequency" element={<WordFrequencyAnalyzer />} />
+          <Route path="/tools/text-encryption" element={<TextEncryption />} />
+          <Route path="/tools/markdown-editor" element={<MarkdownEditor />} />
+          <Route path="/tools/text-comparison" element={<TextComparison />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
