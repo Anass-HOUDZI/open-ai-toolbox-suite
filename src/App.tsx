@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -25,6 +24,10 @@ import AudioVisualizer from "./pages/tools/AudioVisualizer";
 import PasswordStrengthChecker from "./pages/tools/PasswordStrengthChecker";
 import IconGenerator from "./pages/tools/IconGenerator";
 import PatternGenerator from "./pages/tools/PatternGenerator";
+import URLShortener from "./pages/tools/URLShortener";
+import APITester from "./pages/tools/APITester";
+import CodeFormatter from "./pages/tools/CodeFormatter";
+import SQLFormatter from "./pages/tools/SQLFormatter";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -57,6 +60,10 @@ const App = () => (
           <Route path="/tools/password-strength" element={<PasswordStrengthChecker />} />
           <Route path="/tools/icon-generator" element={<IconGenerator />} />
           <Route path="/tools/pattern-generator" element={<PatternGenerator />} />
+          <Route path="/tools/url-shortener" element={<URLShortener />} />
+          <Route path="/tools/api-tester" element={<APITester />} />
+          <Route path="/tools/code-formatter" element={<CodeFormatter />} />
+          <Route path="/tools/sql-formatter" element={<SQLFormatter />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

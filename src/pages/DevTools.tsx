@@ -1,4 +1,3 @@
-
 import Header from "@/components/layout/Header";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -33,25 +32,25 @@ const DevTools = () => {
       name: "URL Shortener",
       description: "Raccourcissement d'URLs avec analytics",
       path: "/tools/url-shortener",
-      status: "coming-soon"
+      status: "available"
     },
     {
       name: "API Tester",
       description: "Test d'APIs REST avec gestion headers",
       path: "/tools/api-tester",
-      status: "coming-soon"
+      status: "available"
     },
     {
       name: "Code Formatter",
       description: "Formatage code multi-langages avec Prettier",
       path: "/tools/code-formatter",
-      status: "coming-soon"
+      status: "available"
     },
     {
       name: "SQL Formatter",
       description: "Formatage et optimisation requêtes SQL",
       path: "/tools/sql-formatter",
-      status: "coming-soon"
+      status: "available"
     }
   ];
 
