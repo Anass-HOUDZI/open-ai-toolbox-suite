@@ -105,11 +105,21 @@ const Index = () => {
               Aucune authentification, aucune base de données, aucune limite.
             </p>
             
-            <div className="flex justify-center mb-12">
+            <div className="flex justify-center mb-8">
               <Button size="lg" className="bg-white text-purple-600 hover:bg-white/90 font-semibold px-8 py-4 rounded-full" onClick={scrollToTools}>
                 Découvrir les outils
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
+            </div>
+            
+            {/* Bloc transparent juste après le CTA */}
+            <div className="flex justify-center mb-8">
+              <div className="glass-effect px-8 py-4 rounded-2xl shadow-lg backdrop-blur-md bg-white/30 border border-white/30 max-w-lg w-full text-center">
+                {/* Contenu personnalisable */}
+                <span className="font-medium text-lg text-purple-900/90">
+                  Plus de <span className="font-bold">30 outils AI</span> à découvrir !
+                </span>
+              </div>
             </div>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
