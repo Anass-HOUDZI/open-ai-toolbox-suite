@@ -3,54 +3,36 @@ import Header from "@/components/layout/Header";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
-const DevTools = () => {
+const MediaTools = () => {
   const tools = [
     {
-      name: "JSON Formatter/Validator",
-      description: "Formatage, validation et minification JSON",
-      path: "/tools/json-formatter",
+      name: "Image Compressor",
+      description: "Compression intelligente d'images avec préservation qualité",
+      path: "/tools/image-compressor",
       status: "available"
     },
     {
-      name: "Base64 Encoder/Decoder",
-      description: "Encodage/décodage Base64 texte et fichiers",
-      path: "/tools/base64-tool",
-      status: "available"
-    },
-    {
-      name: "Regex Tester",
-      description: "Test et debug d'expressions régulières",
-      path: "/tools/regex-tester",
-      status: "available"
-    },
-    {
-      name: "Hash Generator",
-      description: "Génération MD5, SHA1, SHA256 sécurisée",
-      path: "/tools/hash-generator",
+      name: "Image Format Converter",
+      description: "Conversion entre formats JPEG, PNG, WebP, AVIF",
+      path: "/tools/image-converter",
       status: "coming-soon"
     },
     {
-      name: "URL Shortener",
-      description: "Raccourcissement d'URLs avec analytics",
-      path: "/tools/url-shortener",
+      name: "Audio Visualizer",
+      description: "Visualisation spectrale audio temps réel",
+      path: "/tools/audio-visualizer",
       status: "coming-soon"
     },
     {
-      name: "API Tester",
-      description: "Test d'APIs REST avec gestion headers",
-      path: "/tools/api-tester",
+      name: "Background Remover",
+      description: "Suppression arrière-plan IA avec Remove.bg",
+      path: "/tools/background-remover",
       status: "coming-soon"
     },
     {
-      name: "Code Formatter",
-      description: "Formatage code multi-langages avec Prettier",
-      path: "/tools/code-formatter",
-      status: "coming-soon"
-    },
-    {
-      name: "SQL Formatter",
-      description: "Formatage et optimisation requêtes SQL",
-      path: "/tools/sql-formatter",
+      name: "Barcode Generator",
+      description: "Génération codes-barres multiples formats",
+      path: "/tools/barcode-generator",
       status: "coming-soon"
     }
   ];
@@ -59,16 +41,16 @@ const DevTools = () => {
     <div className="min-h-screen">
       <Header />
       
-      <div className="bg-gradient-dev text-white py-16">
+      <div className="bg-gradient-to-br from-pink-500 to-purple-600 text-white py-16">
         <div className="container">
           <div className="flex items-center mb-4">
             <Link to="/" className="text-white/70 hover:text-white mr-2">Accueil</Link>
             <span className="text-white/50">/</span>
-            <span className="ml-2">Développement</span>
+            <span className="ml-2">Audio & Image</span>
           </div>
-          <h1 className="text-5xl font-bold mb-4">🔧 Outils de Développement</h1>
+          <h1 className="text-5xl font-bold mb-4">🎵 Audio & Image</h1>
           <p className="text-xl text-white/90 max-w-2xl">
-            Outils essentiels pour développeurs : formatage, validation, testing et debugging.
+            Traitement et optimisation de médias : compression, conversion et analyse.
           </p>
         </div>
       </div>
@@ -83,7 +65,7 @@ const DevTools = () => {
                 
                 {tool.status === "available" ? (
                   <Link to={tool.path}>
-                    <Button className="w-full bg-gradient-dev hover:opacity-90">
+                    <Button className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:opacity-90">
                       Utiliser l'outil
                     </Button>
                   </Link>
@@ -101,4 +83,4 @@ const DevTools = () => {
   );
 };
 
-export default DevTools;
+export default MediaTools;

@@ -3,24 +3,18 @@ import Header from "@/components/layout/Header";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
-const DevTools = () => {
+const SecurityTools = () => {
   const tools = [
     {
-      name: "JSON Formatter/Validator",
-      description: "Formatage, validation et minification JSON",
-      path: "/tools/json-formatter",
+      name: "Password Generator",
+      description: "Génération de mots de passe sécurisés avec analyse de force",
+      path: "/tools/password-generator",
       status: "available"
     },
     {
-      name: "Base64 Encoder/Decoder",
-      description: "Encodage/décodage Base64 texte et fichiers",
-      path: "/tools/base64-tool",
-      status: "available"
-    },
-    {
-      name: "Regex Tester",
-      description: "Test et debug d'expressions régulières",
-      path: "/tools/regex-tester",
+      name: "Password Strength Checker",
+      description: "Analyseur de force avec recommandations sécurité",
+      path: "/tools/password-strength",
       status: "available"
     },
     {
@@ -30,27 +24,15 @@ const DevTools = () => {
       status: "coming-soon"
     },
     {
-      name: "URL Shortener",
-      description: "Raccourcissement d'URLs avec analytics",
-      path: "/tools/url-shortener",
+      name: "Text Encryption",
+      description: "Chiffrement/déchiffrement AES sécurisé",
+      path: "/tools/text-encryption",
       status: "coming-soon"
     },
     {
-      name: "API Tester",
-      description: "Test d'APIs REST avec gestion headers",
-      path: "/tools/api-tester",
-      status: "coming-soon"
-    },
-    {
-      name: "Code Formatter",
-      description: "Formatage code multi-langages avec Prettier",
-      path: "/tools/code-formatter",
-      status: "coming-soon"
-    },
-    {
-      name: "SQL Formatter",
-      description: "Formatage et optimisation requêtes SQL",
-      path: "/tools/sql-formatter",
+      name: "File Hash Checker",
+      description: "Vérification intégrité fichiers",
+      path: "/tools/file-hash",
       status: "coming-soon"
     }
   ];
@@ -59,16 +41,16 @@ const DevTools = () => {
     <div className="min-h-screen">
       <Header />
       
-      <div className="bg-gradient-dev text-white py-16">
+      <div className="bg-gradient-to-br from-red-500 to-orange-600 text-white py-16">
         <div className="container">
           <div className="flex items-center mb-4">
             <Link to="/" className="text-white/70 hover:text-white mr-2">Accueil</Link>
             <span className="text-white/50">/</span>
-            <span className="ml-2">Développement</span>
+            <span className="ml-2">Sécurité & Analyse</span>
           </div>
-          <h1 className="text-5xl font-bold mb-4">🔧 Outils de Développement</h1>
+          <h1 className="text-5xl font-bold mb-4">🔒 Sécurité & Analyse</h1>
           <p className="text-xl text-white/90 max-w-2xl">
-            Outils essentiels pour développeurs : formatage, validation, testing et debugging.
+            Outils de sécurité, génération de mots de passe et analyse cryptographique.
           </p>
         </div>
       </div>
@@ -83,7 +65,7 @@ const DevTools = () => {
                 
                 {tool.status === "available" ? (
                   <Link to={tool.path}>
-                    <Button className="w-full bg-gradient-dev hover:opacity-90">
+                    <Button className="w-full bg-gradient-to-r from-red-500 to-orange-600 hover:opacity-90">
                       Utiliser l'outil
                     </Button>
                   </Link>
@@ -101,4 +83,4 @@ const DevTools = () => {
   );
 };
 
-export default DevTools;
+export default SecurityTools;

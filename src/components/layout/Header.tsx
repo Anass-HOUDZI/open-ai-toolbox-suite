@@ -25,8 +25,8 @@ const Header = () => {
           <Link to="/dev" className="text-sm font-medium hover:text-orange-600 transition-colors">
             Développement
           </Link>
-          <Link to="/media" className="text-sm font-medium hover:text-pink-600 transition-colors">
-            Audio & Image
+          <Link to="/security" className="text-sm font-medium hover:text-red-600 transition-colors">
+            Sécurité
           </Link>
         </nav>
 
