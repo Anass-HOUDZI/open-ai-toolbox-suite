@@ -1,4 +1,3 @@
-
 import Header from "@/components/layout/Header";
 import CategoryCard from "@/components/CategoryCard";
 import { Button } from "@/components/ui/button";
@@ -68,6 +67,13 @@ const Index = () => {
     { number: "∞", label: "Utilisation Illimitée" }
   ];
 
+  const scrollToTools = () => {
+    const toolsSection = document.getElementById('tools-section');
+    if (toolsSection) {
+      toolsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -102,13 +108,14 @@ const Index = () => {
               Aucune authentification, aucune base de données, aucune limite.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              <Button size="lg" className="bg-white text-purple-600 hover:bg-white/90 font-semibold px-8 py-4 rounded-full">
+            <div className="flex justify-center mb-12">
+              <Button 
+                size="lg" 
+                className="bg-white text-purple-600 hover:bg-white/90 font-semibold px-8 py-4 rounded-full"
+                onClick={scrollToTools}
+              >
                 Découvrir les outils
                 <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-full">
-                Voir la documentation
               </Button>
             </div>
             
@@ -125,7 +132,7 @@ const Index = () => {
       </section>
 
       {/* Categories Grid Enhanced */}
-      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+      <section id="tools-section" className="py-20 bg-gradient-to-b from-gray-50 to-white">
         <div className="container">
           <div className="text-center mb-16">
             <div className="inline-flex items-center space-x-2 bg-purple-100 text-purple-600 rounded-full px-6 py-2 mb-4">
