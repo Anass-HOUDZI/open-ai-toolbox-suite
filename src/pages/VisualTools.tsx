@@ -39,13 +39,13 @@ const VisualTools = () => {
       name: "Gradient Creator",
       description: "Générateur de dégradés CSS avancé",
       path: "/tools/gradient-creator",
-      status: "coming-soon"
+      status: "available"
     },
     {
       name: "Favicon Maker",
       description: "Création de favicons multi-formats",
       path: "/tools/favicon-maker",
-      status: "coming-soon"
+      status: "available"
     }
   ];
 

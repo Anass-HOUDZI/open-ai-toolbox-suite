@@ -32,6 +32,8 @@ import SQLFormatter from "./pages/tools/SQLFormatter";
 import ImageConverter from "./pages/tools/ImageConverter";
 import BackgroundRemover from "./pages/tools/BackgroundRemover";
 import BarcodeGenerator from "./pages/tools/BarcodeGenerator";
+import GradientCreator from "./pages/tools/GradientCreator";
+import FaviconMaker from "./pages/tools/FaviconMaker";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -71,6 +73,8 @@ const App = () => (
           <Route path="/tools/image-converter" element={<ImageConverter />} />
           <Route path="/tools/background-remover" element={<BackgroundRemover />} />
           <Route path="/tools/barcode-generator" element={<BarcodeGenerator />} />
+          <Route path="/tools/gradient-creator" element={<GradientCreator />} />
+          <Route path="/tools/favicon-maker" element={<FaviconMaker />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
