@@ -20,7 +20,7 @@ const Index = () => {
     path: "/text"
   }, {
     title: "Outils Développement",
-    description: "JSON, Base64, Hash, Regex et tous les utilitaires essentiels pour les développeurs.",
+    description: "JSON, Base64, Hash, Regex et tous les utilitaires essentiels pour les développeurs et les no codeurs également.",
     toolCount: 10,
     icon: "🔧",
     gradient: "bg-gradient-dev",
