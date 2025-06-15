@@ -22,6 +22,9 @@ import RegexTester from "./pages/tools/RegexTester";
 import HashGenerator from "./pages/tools/HashGenerator";
 import ImageCompressor from "./pages/tools/ImageCompressor";
 import AudioVisualizer from "./pages/tools/AudioVisualizer";
+import PasswordStrengthChecker from "./pages/tools/PasswordStrengthChecker";
+import IconGenerator from "./pages/tools/IconGenerator";
+import PatternGenerator from "./pages/tools/PatternGenerator";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -51,6 +54,9 @@ const App = () => (
           <Route path="/tools/hash-generator" element={<HashGenerator />} />
           <Route path="/tools/image-compressor" element={<ImageCompressor />} />
           <Route path="/tools/audio-visualizer" element={<AudioVisualizer />} />
+          <Route path="/tools/password-strength" element={<PasswordStrengthChecker />} />
+          <Route path="/tools/icon-generator" element={<IconGenerator />} />
+          <Route path="/tools/pattern-generator" element={<PatternGenerator />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

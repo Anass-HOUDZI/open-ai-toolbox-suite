@@ -1,4 +1,3 @@
-
 import Header from "@/components/layout/Header";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -21,7 +20,7 @@ const SecurityTools = () => {
       name: "Hash Generator",
       description: "Génération MD5, SHA1, SHA256 sécurisée",
       path: "/tools/hash-generator",
-      status: "coming-soon"
+      status: "available"
     },
     {
       name: "Text Encryption",

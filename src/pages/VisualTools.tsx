@@ -25,15 +25,15 @@ const VisualTools = () => {
     },
     {
       name: "Icon Generator",
-      description: "Accès à plus de 12,000 icônes Tabler",
+      description: "Accès à plus de 1,000 icônes Lucide React",
       path: "/tools/icon-generator",
-      status: "coming-soon"
+      status: "available"
     },
     {
       name: "Pattern Generator",
       description: "Création de motifs géométriques algorithmiques",
       path: "/tools/pattern-generator",
-      status: "coming-soon"
+      status: "available"
     },
     {
       name: "Gradient Creator",
