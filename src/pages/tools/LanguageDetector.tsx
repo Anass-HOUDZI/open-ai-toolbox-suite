@@ -1,4 +1,3 @@
-
 import Header from "@/components/layout/Header";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -55,7 +54,7 @@ const LanguageDetector = () => {
       }
     };
     
-    const scores = {};
+    const scores: Record<string, number> = {};
     const lowerText = inputText.toLowerCase();
     
     Object.entries(patterns).forEach(([code, { patterns: langPatterns }]) => {
@@ -67,14 +66,14 @@ const LanguageDetector = () => {
       scores[code] = score;
     });
     
-    const totalScore = Object.values(scores).reduce((a: number, b: number) => a + b, 0);
+    const totalScore = Object.values(scores).reduce((a, b) => a + b, 0);
     
     const detectionResults = Object.entries(scores)
-      .map(([code, score]: [string, number]) => ({
-        language: patterns[code].name,
+      .map(([code, score]) => ({
+        language: patterns[code as keyof typeof patterns].name,
         code: code.toUpperCase(),
         confidence: totalScore > 0 ? Math.round((score / totalScore) * 100) : 0,
-        native: patterns[code].native
+        native: patterns[code as keyof typeof patterns].native
       }))
       .filter(result => result.confidence > 0)
       .sort((a, b) => b.confidence - a.confidence)
