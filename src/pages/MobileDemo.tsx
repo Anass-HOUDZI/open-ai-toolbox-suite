@@ -136,7 +136,12 @@ const MobileDemo = () => {
               <p className="text-sm text-muted-foreground">Tapez pour tester l'interaction</p>
             </div>
           </MobileCard>
-          <MobileCard loading />
+          <MobileCard loading>
+            <div className="p-4">
+              <h4 className="font-medium">Carte en chargement</h4>
+              <p className="text-sm text-muted-foreground">Démonstration du skeleton loader</p>
+            </div>
+          </MobileCard>
           <MobileCard elevation="high">
             <div className="p-4">
               <h4 className="font-medium">Carte élevée</h4>
