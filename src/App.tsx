@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import MobileDemo from "./pages/MobileDemo";
 import VisualTools from "./pages/VisualTools";
 import TextTools from "./pages/TextTools";
 import DevTools from "./pages/DevTools";
@@ -53,6 +54,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/mobile-demo" element={<MobileDemo />} />
           <Route path="/visual" element={<VisualTools />} />
           <Route path="/text" element={<TextTools />} />
           <Route path="/dev" element={<DevTools />} />
