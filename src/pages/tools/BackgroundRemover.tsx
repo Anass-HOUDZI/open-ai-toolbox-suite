@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useState, useRef } from "react";
 import { Upload, Download, RefreshCw, Scissors } from "lucide-react";
 import { toast } from "sonner";
+import { useFileHandler } from "@/hooks/useFileHandler";
 
 const BackgroundRemover = () => {
   const [originalImage, setOriginalImage] = useState<string | null>(null);
@@ -13,12 +14,10 @@ const BackgroundRemover = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [fileName, setFileName] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { handleFileSelect } = useFileHandler();
 
-  const handleFileSelect = (file: File) => {
-    if (!file.type.startsWith('image/')) {
-      toast.error("Veuillez sélectionner un fichier image");
-      return;
-    }
+  const handleFileUpload = (file: File) => {
+    if (!handleFileSelect(file, ['image/'])) return;
 
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -37,7 +36,6 @@ const BackgroundRemover = () => {
 
     try {
       // Simulation du traitement avec Remove.bg API
-      // Dans une vraie implémentation, vous utiliseriez l'API Remove.bg
       await new Promise(resolve => setTimeout(resolve, 3000));
 
       // Pour la démo, on retourne l'image originale avec un effet de transparence simulé
@@ -53,30 +51,29 @@ const BackgroundRemover = () => {
           // Dessiner l'image originale
           ctx.drawImage(img, 0, 0);
           
-          // Simuler la suppression d'arrière-plan (effet démo)
+          // Simuler la suppression d'arrière-plan (effet démo basique)
           const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
           const data = imageData.data;
           
-          // Algorithme simple pour démo : rendre transparent les pixels clairs
+          // Effet basique de transparence pour la démo
           for (let i = 0; i < data.length; i += 4) {
             const r = data[i];
             const g = data[i + 1];
             const b = data[i + 2];
-            const brightness = (r + g + b) / 3;
             
-            // Si le pixel est clair (probablement arrière-plan), le rendre transparent
-            if (brightness > 200) {
-              data[i + 3] = 0; // Alpha = 0 (transparent)
+            // Si couleur proche du blanc (arrière-plan probable)
+            if (r > 200 && g > 200 && b > 200) {
+              data[i + 3] = 0; // Rendre transparent
             }
           }
           
           ctx.putImageData(imageData, 0, 0);
           setProcessedImage(canvas.toDataURL('image/png'));
-          toast.success("Arrière-plan supprimé avec succès !");
         }
       };
-
+      
       img.src = originalImage;
+      toast.success("Background supprimé ! (Version démo)");
     } catch (error) {
       toast.error("Erreur lors du traitement");
     } finally {
@@ -84,35 +81,26 @@ const BackgroundRemover = () => {
     }
   };
 
-  const downloadProcessed = () => {
+  const downloadProcessedImage = () => {
     if (!processedImage) return;
 
     const link = document.createElement('a');
     link.href = processedImage;
-    link.download = `${fileName.split('.')[0]}_no_bg.png`;
+    link.download = `no-bg-${fileName}`;
     link.click();
-    toast.success("Téléchargement démarré !");
-  };
-
-  const reset = () => {
-    setOriginalImage(null);
-    setProcessedImage(null);
-    setFileName("");
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
+    toast.success("Image téléchargée !");
   };
 
   return (
     <div className="min-h-screen">
       <Header />
       
-      <div className="bg-gradient-media text-white py-16">
+      <div className="bg-gradient-to-br from-purple-500 to-pink-600 text-white py-16">
         <div className="container">
           <div className="flex items-center mb-4">
             <Link to="/" className="text-white/70 hover:text-white mr-2">Accueil</Link>
             <span className="text-white/50">/</span>
-            <Link to="/media" className="text-white/70 hover:text-white mx-2">Audio & Image</Link>
+            <Link to="/media" className="text-white/70 hover:text-white mx-2">Média</Link>
             <span className="text-white/50">/</span>
             <span className="ml-2">Background Remover</span>
           </div>
@@ -121,154 +109,130 @@ const BackgroundRemover = () => {
             <h1 className="text-4xl font-bold">Background Remover</h1>
           </div>
           <p className="text-xl text-white/90">
-            Supprimez l'arrière-plan de vos images automatiquement
+            Supprimez automatiquement l'arrière-plan de vos images
           </p>
         </div>
       </div>
 
       <section className="py-12">
-        <div className="container max-w-6xl">
-          {!originalImage ? (
-            /* Upload Area */
+        <div className="container max-w-4xl">
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Upload Section */}
             <Card>
               <CardHeader>
-                <CardTitle>Télécharger une image</CardTitle>
+                <CardTitle>Image Originale</CardTitle>
               </CardHeader>
               <CardContent>
-                <div 
-                  className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-12 text-center cursor-pointer hover:border-muted-foreground/50 transition-colors"
-                  onClick={() => fileInputRef.current?.click()}
-                >
-                  <Upload className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
-                  <p className="text-xl font-medium mb-2">Cliquez pour sélectionner une image</p>
-                  <p className="text-muted-foreground">
-                    Formats supportés : JPG, PNG (max 10MB)
-                  </p>
-                </div>
-
+                {!originalImage ? (
+                  <div
+                    className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-gray-400 transition-colors"
+                    onClick={() => fileInputRef.current?.click()}
+                  >
+                    <Upload className="w-12 h-12 mx-auto mb-4 text-gray-400" />
+                    <p className="text-lg font-medium mb-2">Cliquez pour uploader une image</p>
+                    <p className="text-sm text-gray-500">Formats supportés: JPG, PNG, WebP</p>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    <img
+                      src={originalImage}
+                      alt="Original"
+                      className="w-full max-h-64 object-contain rounded-lg"
+                    />
+                    <p className="text-sm text-gray-500">{fileName}</p>
+                    <Button
+                      onClick={() => fileInputRef.current?.click()}
+                      variant="outline"
+                      className="w-full"
+                    >
+                      <Upload className="w-4 h-4 mr-2" />
+                      Changer d'image
+                    </Button>
+                  </div>
+                )}
+                
                 <input
                   ref={fileInputRef}
                   type="file"
                   accept="image/*"
-                  onChange={(e) => e.target.files?.[0] && handleFileSelect(e.target.files[0])}
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) handleFileUpload(file);
+                  }}
                   className="hidden"
                 />
               </CardContent>
             </Card>
-          ) : (
-            /* Processing Area */
-            <div className="space-y-6">
-              <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-bold">Traitement de l'image</h2>
-                <div className="flex gap-2">
-                  {processedImage && (
-                    <Button onClick={downloadProcessed}>
-                      <Download className="w-4 h-4 mr-2" />
-                      Télécharger
-                    </Button>
-                  )}
-                  <Button variant="outline" onClick={reset}>
-                    Nouvelle image
-                  </Button>
-                </div>
-              </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* Original Image */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Image originale</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="aspect-square bg-checkerboard rounded-lg overflow-hidden">
-                      <img 
-                        src={originalImage} 
-                        alt="Original" 
-                        className="w-full h-full object-contain"
+            {/* Result Section */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Résultat</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {!processedImage ? (
+                  <div className="border border-gray-200 rounded-lg p-8 text-center min-h-64 flex items-center justify-center">
+                    <div>
+                      <Scissors className="w-12 h-12 mx-auto mb-4 text-gray-400" />
+                      <p className="text-gray-500">L'image traitée apparaîtra ici</p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    <div className="bg-gray-100 rounded-lg p-4">
+                      <img
+                        src={processedImage}
+                        alt="Processed"
+                        className="w-full max-h-64 object-contain"
                       />
                     </div>
-                    <div className="mt-4 text-center">
-                      <Button 
-                        onClick={removeBackground}
-                        disabled={isProcessing}
-                        className="bg-gradient-media hover:opacity-90"
-                      >
-                        {isProcessing ? (
-                          <>
-                            <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
-                            Traitement...
-                          </>
-                        ) : (
-                          <>
-                            <Scissors className="w-4 h-4 mr-2" />
-                            Supprimer l'arrière-plan
-                          </>
-                        )}
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Processed Image */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Résultat</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="aspect-square bg-checkerboard rounded-lg overflow-hidden">
-                      {processedImage ? (
-                        <img 
-                          src={processedImage} 
-                          alt="Processed" 
-                          className="w-full h-full object-contain"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                          {isProcessing ? (
-                            <div className="text-center">
-                              <RefreshCw className="w-8 h-8 mx-auto mb-2 animate-spin" />
-                              <p>Traitement en cours...</p>
-                            </div>
-                          ) : (
-                            <p>L'image traitée apparaîtra ici</p>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-
-              {/* Info */}
-              <Card>
-                <CardContent className="pt-6">
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <p className="text-sm text-blue-800">
-                      <strong>Note :</strong> Ceci est une démo simplifiée. Dans une implémentation réelle, 
-                      cet outil utiliserait l'API Remove.bg ou un modèle d'IA comme REMBG pour une suppression 
-                      d'arrière-plan précise et professionnelle.
-                    </p>
+                    <Button
+                      onClick={downloadProcessedImage}
+                      className="w-full"
+                    >
+                      <Download className="w-4 h-4 mr-2" />
+                      Télécharger PNG
+                    </Button>
                   </div>
-                </CardContent>
-              </Card>
-            </div>
-          )}
+                )}
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="mt-8 text-center">
+            <Button
+              onClick={removeBackground}
+              disabled={!originalImage || isProcessing}
+              size="lg"
+              className="bg-gradient-to-r from-purple-500 to-pink-600 hover:opacity-90"
+            >
+              {isProcessing ? (
+                <>
+                  <RefreshCw className="w-5 h-5 mr-2 animate-spin" />
+                  Traitement en cours...
+                </>
+              ) : (
+                <>
+                  <Scissors className="w-5 h-5 mr-2" />
+                  Supprimer l'arrière-plan
+                </>
+              )}
+            </Button>
+          </div>
+
+          <Card className="mt-8">
+            <CardHeader>
+              <CardTitle>Note importante</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-gray-600">
+                Cette version est une démonstration basique. Pour de meilleurs résultats, utilisez des services comme Remove.bg 
+                ou des bibliothèques de machine learning spécialisées dans la segmentation d'images.
+              </p>
+            </CardContent>
+          </Card>
         </div>
       </section>
-
-      <style>
-        {`
-          .bg-checkerboard {
-            background-image: 
-              linear-gradient(45deg, #ccc 25%, transparent 25%), 
-              linear-gradient(-45deg, #ccc 25%, transparent 25%), 
-              linear-gradient(45deg, transparent 75%, #ccc 75%), 
-              linear-gradient(-45deg, transparent 75%, #ccc 75%);
-            background-size: 20px 20px;
-            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-          }
-        `}
-      </style>
     </div>
   );
 };

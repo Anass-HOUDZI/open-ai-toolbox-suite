@@ -1,10 +1,11 @@
 
 import { useState } from "react";
-import Header from "@/components/layout/Header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle, XCircle, Copy, Download, FileJson } from "lucide-react";
+import { ToolLayout } from "@/components/common/ToolLayout";
+import { useClipboard } from "@/hooks/useClipboard";
+import { CheckCircle, XCircle, Copy, Download, FileJson, Code } from "lucide-react";
 import { toast } from "sonner";
 
 const JSONFormatter = () => {
@@ -12,6 +13,7 @@ const JSONFormatter = () => {
   const [output, setOutput] = useState("");
   const [isValid, setIsValid] = useState<boolean | null>(null);
   const [error, setError] = useState<string>("");
+  const { copyToClipboard } = useClipboard();
 
   const formatJSON = () => {
     if (!input.trim()) {
@@ -79,11 +81,6 @@ const JSONFormatter = () => {
     }
   };
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-    toast.success("Copié dans le presse-papier");
-  };
-
   const downloadJSON = () => {
     if (!output) {
       toast.error("Rien à télécharger");
@@ -134,28 +131,26 @@ const JSONFormatter = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      <Header />
-      
-      <div className="bg-gradient-dev text-white py-16">
-        <div className="container">
-          <h1 className="text-4xl font-bold mb-4">🔧 JSON Formatter/Validator</h1>
-          <p className="text-xl text-white/90">
-            Formatez, validez et minifiez vos données JSON facilement
-          </p>
-        </div>
-      </div>
-
-      <div className="container py-8">
+    <ToolLayout
+      title="JSON Formatter/Validator"
+      description="Formatez, validez et minifiez vos données JSON facilement"
+      icon={<FileJson className="w-8 h-8" />}
+      category="Développement"
+      categoryPath="/dev"
+      gradientClass="bg-gradient-dev"
+    >
+      <div className="max-w-6xl mx-auto">
         {/* Toolbar */}
         <div className="flex flex-wrap gap-3 mb-6">
           <Button onClick={formatJSON} className="bg-green-600 hover:bg-green-700">
+            <Code className="w-4 h-4 mr-2" />
             Formater
           </Button>
           <Button onClick={minifyJSON} className="bg-blue-600 hover:bg-blue-700">
             Minifier
           </Button>
           <Button onClick={validateJSON} className="bg-purple-600 hover:bg-purple-700">
+            <CheckCircle className="w-4 h-4 mr-2" />
             Valider
           </Button>
           <Button onClick={loadSample} variant="outline">
@@ -274,7 +269,7 @@ const JSONFormatter = () => {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </ToolLayout>
   );
 };
 
