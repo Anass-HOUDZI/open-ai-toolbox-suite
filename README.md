@@ -1,8 +1,8 @@
-# OpenToolsAI Suite
+# Open Ai Tool's Suite
 
 OpenToolsAI Suite est une collection révolutionnaire de 30 outils d'intelligence artificielle, 100% gratuits et open source. Cette suite offre une gamme complète d'outils pour la création visuelle, le traitement de texte, le développement, et bien plus, le tout dans une interface utilisateur intuitive et responsive.
 
-**Lien du Projet** : [OpenToolsAI Suite](https://open-ai-toolbox-suite.lovable.app/)
+**Lien du Projet** : [Open Ai Tool's Suite](https://open-ai-toolbox-suite.lovable.app/)
 
 ## Fonctionnalités Principales
 
