@@ -1,9 +1,9 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
 
 @layer base {
   :root {
@@ -45,6 +45,18 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Premium Color Palette */
+    --premium-50: 240 100% 99%;
+    --premium-100: 237 100% 97%;
+    --premium-200: 236 84% 92%;
+    --premium-300: 236 74% 86%;
+    --premium-400: 237 71% 76%;
+    --premium-500: 239 84% 67%;
+    --premium-600: 243 75% 59%;
+    --premium-700: 245 58% 51%;
+    --premium-800: 244 55% 41%;
+    --premium-900: 242 47% 34%;
 
     /* Safe Area Insets */
     --safe-area-inset-top: env(safe-area-inset-top);
@@ -89,6 +101,18 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Premium Dark Mode */
+    --premium-50: 242 47% 15%;
+    --premium-100: 244 55% 20%;
+    --premium-200: 245 58% 25%;
+    --premium-300: 243 75% 35%;
+    --premium-400: 239 84% 45%;
+    --premium-500: 237 71% 55%;
+    --premium-600: 236 74% 65%;
+    --premium-700: 236 84% 75%;
+    --premium-800: 237 100% 85%;
+    --premium-900: 240 100% 95%;
   }
 }
 
@@ -98,11 +122,127 @@
   }
 
   body {
-    @apply bg-gradient-to-br from-slate-50 to-blue-50 text-foreground min-h-screen;
-    /* Mobile optimizations */
+    @apply bg-gradient-to-br from-slate-50 to-blue-50 text-foreground min-h-screen font-inter;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-space-grotesk;
+  }
+
+  /* Glassmorphism Effects */
+  .glass-card {
+    backdrop-filter: blur(16px) saturate(180%);
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .glass-premium {
+    backdrop-filter: blur(20px) saturate(200%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  }
+
+  /* 3D Transform Optimizations */
+  .transform-gpu {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .hover-3d {
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d;
+  }
+
+  .hover-3d:hover {
+    transform: translateY(-8px) rotateX(5deg) scale(1.02);
+  }
+
+  /* Shine Effect */
+  .shine-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shine-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    transition: left 0.8s;
+  }
+
+  .shine-effect:hover::before {
+    left: 100%;
+  }
+
+  /* Background Patterns */
+  .bg-pattern-dots {
+    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .bg-pattern-grid {
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  /* Smooth Scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  /* Premium Animations */
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 4s ease infinite;
+  }
+
+  /* Touch Target Minimum Sizes */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
   }
 
   /* Safe Area Support */
@@ -121,179 +261,4 @@
   .safe-right {
     padding-right: env(safe-area-inset-right);
   }
-
-  .glass-effect {
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-
-  .tool-card {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .tool-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  }
-
-  /* Mobile Touch Optimizations */
-  .webkit-overflow-scrolling-touch {
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Hardware Acceleration */
-  .transform-gpu {
-    transform: translateZ(0);
-    will-change: transform;
-  }
-
-  /* Touch Target Minimum Sizes */
-  .touch-target {
-    min-height: 44px;
-    min-width: 44px;
-  }
-
-  /* Shimmer Animation for Skeleton Loading */
-  @keyframes shimmer {
-    0% {
-      background-position: -200px 0;
-    }
-    100% {
-      background-position: calc(200px + 100%) 0;
-    }
-  }
-
-  .shimmer {
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    background-size: 200px 100%;
-    animation: shimmer 1.5s infinite;
-  }
-
-  /* Gradients pour les catégories */
-  .bg-gradient-hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  }
-
-  .bg-gradient-visual {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  }
-
-  .bg-gradient-text {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  }
-
-  .bg-gradient-dev {
-    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-  }
-
-  .bg-gradient-media {
-    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-  }
-
-  .bg-gradient-security {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ffa726 100%);
-  }
-
-  /* Mobile-specific animations */
-  .animate-fade-in {
-    animation: fadeIn 0.8s ease-out;
-  }
-
-  .animate-scale-in {
-    animation: scaleIn 0.6s ease-out;
-  }
-
-  .animate-slide-up {
-    animation: slideUp 0.4s ease-out;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes scaleIn {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(100%);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Active states for better touch feedback */
-  .active\:scale-98:active {
-    transform: scale(0.98);
-  }
-
-  /* Dark mode mobile optimizations */
-  @media (prefers-color-scheme: dark) {
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 3px;
-    }
-  }
-}
-
-/* Mobile-first responsive breakpoints */
-@media screen and (min-width: 375px) {
-  .xs\:block { display: block; }
-  .xs\:hidden { display: none; }
-}
-
-@media screen and (min-width: 640px) {
-  .mobile-sm\:block { display: block; }
-  .mobile-sm\:hidden { display: none; }
-}
-
-@media screen and (min-width: 768px) {
-  .mobile-md\:block { display: block; }
-  .mobile-md\:hidden { display: none; }
-}
-
-@media screen and (min-width: 1024px) {
-  .tablet-lg\:block { display: block; }
-  .tablet-lg\:hidden { display: none; }
-}
-
-@media screen and (min-width: 1920px) {
-  .desktop-3xl\:block { display: block; }
-  .desktop-3xl\:hidden { display: none; }
-}
-
-/* Landscape/Portrait specific styles */
-@media screen and (orientation: landscape) {
-  .landscape\:flex-row { flex-direction: row; }
-  .landscape\:hidden { display: none; }
-}
-
-@media screen and (orientation: portrait) {
-  .portrait\:flex-col { flex-direction: column; }
-  .portrait\:hidden { display: none; }
 }
