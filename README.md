@@ -1,4 +1,4 @@
-# Open Ai Tool's Suite
+# OpenToolsAI Suit
 
 OpenToolsAI Suite est une collection révolutionnaire de 30 outils d'intelligence artificielle, 100% gratuits et open source. Cette suite offre une gamme complète d'outils pour la création visuelle, le traitement de texte, le développement, et bien plus, le tout dans une interface utilisateur intuitive et responsive.
 
@@ -174,7 +174,6 @@ OpenToolsAI Suite est une collection révolutionnaire de 30 outils d'intelligenc
 ### Backend
 - **Node.js** : Environnement d'exécution JavaScript pour le serveur backend.
 - **Express.js** : Framework pour construire des API RESTful.
-- **Supabase** : Base de données et gestion de l'authentification.
 
 ### Autres Outils
 - **GitHub Actions** : Pour l'intégration continue et le déploiement continu (CI/CD).
