@@ -125,8 +125,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            30 outils d'intelligence artificielle révolutionnaires, 100% gratuits et open source. 
-            Aucune authentification, aucune base de données, aucune limite.
+           30 outils, zéro limite, zéro trace.
           </motion.p>
           
           {/* Search Bar */}
