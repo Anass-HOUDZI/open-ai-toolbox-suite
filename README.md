@@ -1,8 +1,8 @@
 # Toolbox
 
-Toolbox est une collection révolutionnaire de 30 outils d'intelligence artificielle, 100% gratuits et open source. Cette suite offre une gamme complète d'outils pour la création visuelle, le traitement de texte, le développement, et bien plus, le tout dans une interface utilisateur intuitive et responsive.
+Toolbox est une collection de 30 outils d'IA pour la création visuelle, le traitement de texte, le développement.
 
-**Lien du Projet** : [Toolbox](https://open-ai-toolbox-suite.lovable.app/)
+**Lien du Projet** : [Toolbox](https://toolboxx.netlify.app/)
 
 ## Fonctionnalités Principales
 
