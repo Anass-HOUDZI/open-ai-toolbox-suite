@@ -22,7 +22,9 @@ const Base64Tool = () => {
     }
 
     try {
-      const encoded = btoa(unescape(encodeURIComponent(textInput)));
+      // Use modern approach instead of deprecated unescape/escape
+      const utf8Bytes = new TextEncoder().encode(textInput);
+      const encoded = btoa(String.fromCharCode(...utf8Bytes));
       setTextOutput(encoded);
       toast.success("Texte encodé en Base64 !");
     } catch (error) {
@@ -38,7 +40,13 @@ const Base64Tool = () => {
     }
 
     try {
-      const decoded = decodeURIComponent(escape(atob(textInput)));
+      // Use modern approach instead of deprecated unescape/escape
+      const binaryString = atob(textInput);
+      const bytes = new Uint8Array(binaryString.length);
+      for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+      const decoded = new TextDecoder().decode(bytes);
       setTextOutput(decoded);
       toast.success("Base64 décodé en texte !");
     } catch (error) {

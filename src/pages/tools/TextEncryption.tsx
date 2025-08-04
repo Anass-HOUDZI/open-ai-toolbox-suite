@@ -23,10 +23,12 @@ const TextEncryption = () => {
     });
   };
 
-  // Base64 Encoding
+  // Base64 Encoding with modern approach
   const base64Encode = (text: string) => {
     try {
-      return btoa(unescape(encodeURIComponent(text)));
+      // Use modern approach instead of deprecated unescape/escape
+      const utf8Bytes = new TextEncoder().encode(text);
+      return btoa(String.fromCharCode(...utf8Bytes));
     } catch (e) {
       return text;
     }
@@ -34,7 +36,13 @@ const TextEncryption = () => {
 
   const base64Decode = (text: string) => {
     try {
-      return decodeURIComponent(escape(atob(text)));
+      // Use modern approach instead of deprecated unescape/escape
+      const binaryString = atob(text);
+      const bytes = new Uint8Array(binaryString.length);
+      for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+      return new TextDecoder().decode(bytes);
     } catch (e) {
       return text;
     }

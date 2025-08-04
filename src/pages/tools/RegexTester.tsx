@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Copy, TestTube, BookOpen, Zap } from "lucide-react";
 import { toast } from "sonner";
+import DOMPurify from 'dompurify';
 
 const RegexTester = () => {
   const [pattern, setPattern] = useState("");
@@ -61,23 +62,35 @@ const RegexTester = () => {
   }, [pattern, testString, flags]);
 
   const highlightMatches = (text: string, matches: RegExpMatchArray[]) => {
-    if (!matches.length) return text;
+    if (!matches.length) return DOMPurify.sanitize(text);
 
-    let result = text;
+    // First escape the original text to prevent XSS
+    const escapedText = text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#x27;');
+
+    let result = escapedText;
     let offset = 0;
 
     matches.forEach((match, index) => {
       if (match.index !== undefined) {
         const start = match.index + offset;
         const end = start + match[0].length;
-        const highlightedMatch = `<mark class="bg-yellow-300 px-1 rounded">${match[0]}</mark>`;
+        const highlightedMatch = `<mark class="bg-yellow-300 px-1 rounded">${escapedText.slice(start, end)}</mark>`;
         
         result = result.slice(0, start) + highlightedMatch + result.slice(end);
-        offset += highlightedMatch.length - match[0].length;
+        offset += highlightedMatch.length - (end - start);
       }
     });
 
-    return result;
+    // Sanitize the final result to ensure only safe HTML
+    return DOMPurify.sanitize(result, {
+      ALLOWED_TAGS: ['mark'],
+      ALLOWED_ATTR: ['class']
+    });
   };
 
   const commonPatterns = [

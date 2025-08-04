@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Eye, Edit, Download, Copy, FileText } from "lucide-react";
 import { toast } from "sonner";
+import DOMPurify from 'dompurify';
 
 const MarkdownEditor = () => {
   const [markdown, setMarkdown] = useState(`# Welcome to Markdown Editor
@@ -46,9 +47,9 @@ function hello() {
 
   const [viewMode, setViewMode] = useState<"split" | "edit" | "preview">("split");
 
-  // Simple markdown to HTML converter
+  // Simple markdown to HTML converter with XSS protection
   const markdownToHtml = (md: string) => {
-    return md
+    const html = md
       // Headers
       .replace(/^### (.*$)/gim, '<h3>$1</h3>')
       .replace(/^## (.*$)/gim, '<h2>$1</h2>')
@@ -64,7 +65,7 @@ function hello() {
       .replace(/`(.*?)`/g, '<code>$1</code>')
       
       // Links
-      .replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+      .replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
       
       // Images
       .replace(/!\[([^\]]*)\]\(([^\)]+)\)/g, '<img src="$2" alt="$1" style="max-width: 100%; height: auto;" />')
@@ -88,6 +89,13 @@ function hello() {
       
       // Line breaks
       .replace(/\n/g, '<br>');
+
+    // Sanitize the HTML to prevent XSS attacks
+    return DOMPurify.sanitize(html, {
+      ALLOWED_TAGS: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'br', 'strong', 'em', 'code', 'pre', 'a', 'img', 'ul', 'ol', 'li', 'blockquote', 'hr', 'table', 'tr', 'td', 'th'],
+      ALLOWED_ATTR: ['href', 'target', 'rel', 'src', 'alt', 'style', 'class'],
+      ALLOWED_URI_REGEXP: /^(?:(?:(?:f|ht)tps?|mailto|tel|callto|cid|xmpp):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i
+    });
   };
 
   const downloadMarkdown = () => {
