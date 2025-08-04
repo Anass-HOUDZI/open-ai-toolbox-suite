@@ -78,7 +78,7 @@ const HeroSection = () => {
             transition={{ type: "spring", stiffness: 300 }}
           >
             <Sparkles className="w-5 h-5 animate-pulse-soft" />
-            <span className="text-sm font-medium">Suite d'outils IA révolutionnaire</span>
+            <span className="text-sm font-medium">Votre studio IA personnel</span>
           </motion.div>
           
           {/* Main Title */}
