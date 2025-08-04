@@ -11,9 +11,11 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-sm">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">TB</span>
-          </div>
+          <img 
+            src="/lovable-uploads/d8d14116-0a84-4210-bf1f-29986e228162.png" 
+            alt="Toolbox Logo"
+            className="w-8 h-8 object-contain"
+          />
           <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
             Toolbox
           </span>
