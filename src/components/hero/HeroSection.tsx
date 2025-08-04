@@ -106,7 +106,7 @@ const HeroSection = () => {
                 backgroundClip: "text",
               }}
             >
-              OpenToolsAI
+              Toolbox
             </motion.span>
             <motion.span 
               className="block bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent"

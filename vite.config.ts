@@ -16,8 +16,8 @@ export default defineConfig(({ mode }) => ({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
       manifest: {
-        name: 'OpenToolsAI Suite',
-        short_name: 'OpenToolsAI',
+        name: 'Toolbox Suite',
+        short_name: 'Toolbox',
         description: "Suite révolutionnaire de 30 outils d'intelligence artificielle 100% gratuits, open source et fonctionnant côté client. Aucune authentification requise.",
         theme_color: '#8B5CF6',
         background_color: '#ffffff',

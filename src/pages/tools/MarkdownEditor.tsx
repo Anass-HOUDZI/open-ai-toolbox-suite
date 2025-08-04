@@ -33,7 +33,7 @@ function hello() {
   - Nested point
 
 ### Links and Images
-[OpenToolsAI](https://example.com)
+[Toolbox](https://example.com)
 
 > This is a blockquote
 > It can span multiple lines

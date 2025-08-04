@@ -106,7 +106,7 @@ const JSONFormatter = () => {
 
   const loadSample = () => {
     const sample = {
-      "name": "OpenToolsAI",
+      "name": "Toolbox",
       "version": "1.0.0",
       "tools": [
         {

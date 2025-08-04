@@ -49,7 +49,7 @@ const MaintenancePage = () => {
             <h1 className="text-4xl font-bold">Status des Outils</h1>
           </div>
           <p className="text-xl text-white/90">
-            Vérification du statut de tous les outils de la suite OpenToolsAI
+            Vérification du statut de tous les outils de la suite Toolbox
           </p>
         </div>
       </div>
