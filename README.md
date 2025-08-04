@@ -1,6 +1,6 @@
 # Toolbox
 
-Toolbox est une collection de 30 outils d'IA pour la création visuelle, le traitement de texte, le développement.
+Toolbox est une collection de 30 outils d'IA pour la création visuelle, le traitement de texte et le développement web.
 
 **Lien du Projet** : [Toolbox](https://toolboxx.netlify.app/)
 
