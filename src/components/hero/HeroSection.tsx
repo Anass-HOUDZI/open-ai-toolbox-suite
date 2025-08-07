@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Sparkles, Search, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import StatsCounter from "./StatsCounter";
-import SearchBar from "./SearchBar";
+
 
 const HeroSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -128,15 +128,6 @@ const HeroSection = () => {
            L'IA open source à portée de clic.
           </motion.p>
           
-          {/* Search Bar */}
-          <motion.div
-            className="mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <SearchBar />
-          </motion.div>
           
           {/* CTA Button */}
           <motion.div
