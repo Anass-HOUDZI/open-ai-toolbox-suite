@@ -125,11 +125,11 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-           L'IA open source à portée de clic.
-            <br><br>
-           <strong>Toolbox révolutionne la donne.</strong> 30+ outils d'intelligence artificielle 
-      open-source qui fonctionnent 100% dans votre navigateur. Création visuelle, traitement 
-      de texte, développement, sécurité...    
+            L'IA open source à portée de clic.
+            <br /><br />
+            <strong>Toolbox révolutionne la donne.</strong> 30+ outils d'intelligence artificielle 
+            open-source qui fonctionnent 100% dans votre navigateur. Création visuelle, traitement 
+            de texte, développement, sécurité...    
           </motion.p>
           
           
