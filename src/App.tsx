@@ -45,6 +45,7 @@ import TextComparison from "./pages/tools/TextComparison";
 import NotFound from "./pages/NotFound";
 import CSSMinifier from "./pages/tools/CSSMinifier";
 import HTMLValidator from "./pages/tools/HTMLValidator";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -61,6 +62,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/mobile-demo" element={<MobileDemo />} />
