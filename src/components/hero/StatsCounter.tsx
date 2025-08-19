@@ -52,7 +52,7 @@ const StatsCounter = ({ number, suffix = "", label, delay = 0, isVisible = false
 
   return (
     <motion.div
-      className="text-center glass-premium p-6 rounded-2xl hover-3d"
+      className="text-center glass-premium p-4 md:p-6 rounded-2xl hover-3d"
       initial={{ opacity: 0, y: 20, scale: 0.9 }}
       animate={controls}
       whileHover={{ 
