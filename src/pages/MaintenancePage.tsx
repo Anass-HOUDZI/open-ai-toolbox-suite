@@ -42,35 +42,37 @@ const MaintenancePage = () => {
     <div className="min-h-screen">
       <Header />
       
-      <div className="bg-gradient-to-br from-blue-500 to-purple-600 text-white py-16">
-        <div className="container">
-          <div className="flex items-center gap-3 mb-4">
-            <Wrench className="w-8 h-8" />
-            <h1 className="text-4xl font-bold">Status des Outils</h1>
+      {/* Hero Header - Mobile First */}
+      <div className="bg-gradient-to-br from-blue-500 to-purple-600 text-white py-8 sm:py-12 md:py-16">
+        <div className="container px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+            <Wrench className="w-6 h-6 sm:w-8 sm:h-8" />
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">Status des Outils</h1>
           </div>
-          <p className="text-xl text-white/90">
+          <p className="text-base sm:text-lg md:text-xl text-white/90">
             Vérification du statut de tous les outils de la suite Toolbox
           </p>
         </div>
       </div>
 
-      <section className="py-12">
-        <div className="container max-w-4xl">
-          <div className="grid gap-4">
+      {/* Tools Status - Mobile First */}
+      <section className="py-8 sm:py-12">
+        <div className="container px-4 sm:px-6 lg:px-8 max-w-4xl">
+          <div className="grid gap-3 sm:gap-4">
             {tools.map((tool) => (
               <Card key={tool.path} className="hover:shadow-lg transition-shadow">
-                <CardContent className="flex items-center justify-between p-6">
-                  <div className="flex items-center gap-4">
+                <CardContent className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 sm:p-6 gap-4">
+                  <div className="flex items-center gap-3 sm:gap-4">
                     {getStatusIcon(tool.status)}
-                    <div>
-                      <h3 className="font-semibold">{tool.name}</h3>
-                      <p className="text-sm text-muted-foreground capitalize">{tool.category}</p>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-semibold text-sm sm:text-base truncate">{tool.name}</h3>
+                      <p className="text-xs sm:text-sm text-muted-foreground capitalize">{tool.category}</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2 sm:gap-3 justify-between sm:justify-end">
                     {getStatusBadge(tool.status)}
-                    <Button asChild variant="outline" size="sm">
+                    <Button asChild variant="outline" size="sm" className="h-9 touch-target">
                       <Link to={tool.path}>Tester</Link>
                     </Button>
                   </div>
@@ -79,38 +81,39 @@ const MaintenancePage = () => {
             ))}
           </div>
 
-          <Card className="mt-8">
+          {/* Summary Card - Mobile First */}
+          <Card className="mt-6 sm:mt-8">
             <CardHeader>
-              <CardTitle>Résumé Global</CardTitle>
+              <CardTitle className="text-lg sm:text-xl">Résumé Global</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid md:grid-cols-4 gap-4">
-                <div className="text-center p-4 bg-green-50 rounded-lg">
-                  <div className="text-2xl font-bold text-green-600">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                <div className="text-center p-3 sm:p-4 bg-green-50 rounded-lg">
+                  <div className="text-xl sm:text-2xl font-bold text-green-600">
                     {tools.filter(t => t.status === 'working').length}
                   </div>
-                  <div className="text-sm text-gray-600">Outils Fonctionnels</div>
+                  <div className="text-xs sm:text-sm text-gray-600">Outils Fonctionnels</div>
                 </div>
                 
-                <div className="text-center p-4 bg-yellow-50 rounded-lg">
-                  <div className="text-2xl font-bold text-yellow-600">
+                <div className="text-center p-3 sm:p-4 bg-yellow-50 rounded-lg">
+                  <div className="text-xl sm:text-2xl font-bold text-yellow-600">
                     {tools.filter(t => t.status === 'warning').length}
                   </div>
-                  <div className="text-sm text-gray-600">Attention</div>
+                  <div className="text-xs sm:text-sm text-gray-600">Attention</div>
                 </div>
                 
-                <div className="text-center p-4 bg-red-50 rounded-lg">
-                  <div className="text-2xl font-bold text-red-600">
+                <div className="text-center p-3 sm:p-4 bg-red-50 rounded-lg">
+                  <div className="text-xl sm:text-2xl font-bold text-red-600">
                     {tools.filter(t => t.status === 'error').length}
                   </div>
-                  <div className="text-sm text-gray-600">Erreurs</div>
+                  <div className="text-xs sm:text-sm text-gray-600">Erreurs</div>
                 </div>
                 
-                <div className="text-center p-4 bg-blue-50 rounded-lg">
-                  <div className="text-2xl font-bold text-blue-600">
+                <div className="text-center p-3 sm:p-4 bg-blue-50 rounded-lg">
+                  <div className="text-xl sm:text-2xl font-bold text-blue-600">
                     {tools.length}
                   </div>
-                  <div className="text-sm text-gray-600">Total Outils</div>
+                  <div className="text-xs sm:text-sm text-gray-600">Total Outils</div>
                 </div>
               </div>
             </CardContent>
