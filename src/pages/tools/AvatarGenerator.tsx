@@ -26,7 +26,7 @@ const AvatarGenerator = () => {
 
   const generateAvatar = () => {
     const seedValue = seed || Math.random().toString(36).substring(7);
-    const url = `https://api.dicebear.com/7.x/${style}/svg?seed=${seedValue}`;
+    const url = `https://api.dicebear.com/7.x/${style}/svg?seed=${encodeURIComponent(seedValue)}&backgroundColor=transparent`;
     setAvatarUrl(url);
     setSeed(seedValue);
   };

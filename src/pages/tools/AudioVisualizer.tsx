@@ -114,13 +114,22 @@ const AudioVisualizer = () => {
     const ctx = canvas.getContext('2d')!;
     const bufferLength = analyserRef.current.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
+    let lastFrameTime = 0;
+    const targetFPS = 60;
+    const frameInterval = 1000 / targetFPS;
 
-    const draw = () => {
+    const draw = (currentTime: number) => {
       animationIdRef.current = requestAnimationFrame(draw);
+      
+      // Throttle frame rate for better performance
+      if (currentTime - lastFrameTime < frameInterval) return;
+      lastFrameTime = currentTime;
       
       analyserRef.current!.getByteFrequencyData(dataArray);
       
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+      // Clear with better performance
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.95)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
       const sensitivity = getSensitivity();
@@ -134,7 +143,7 @@ const AudioVisualizer = () => {
       }
     };
 
-    draw();
+    draw(performance.now());
   };
 
   const stopVisualization = () => {

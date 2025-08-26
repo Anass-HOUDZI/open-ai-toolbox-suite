@@ -24,50 +24,61 @@ const ImageCompressor = () => {
   const [quality, setQuality] = useState([80]);
   const [maxWidth, setMaxWidth] = useState([1920]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const workerRef = useRef<Worker | null>(null);
 
   const compressImage = async (file: File): Promise<ProcessedImage> => {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
       const img = new Image();
 
       img.onload = () => {
-        // Calculate new dimensions
-        let { width, height } = img;
-        const maxW = maxWidth[0];
-        
-        if (width > maxW) {
-          height = (height * maxW) / width;
-          width = maxW;
+        try {
+          // Calculate new dimensions
+          let { width, height } = img;
+          const maxW = maxWidth[0];
+          
+          if (width > maxW) {
+            height = (height * maxW) / width;
+            width = maxW;
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+
+          // Draw and compress with better performance
+          ctx?.drawImage(img, 0, 0, width, height);
+          
+          canvas.toBlob(
+            (blob) => {
+              if (blob) {
+                const compressionRatio = ((file.size - blob.size) / file.size) * 100;
+                
+                resolve({
+                  original: file,
+                  compressed: blob,
+                  originalSize: file.size,
+                  compressedSize: blob.size,
+                  compressionRatio,
+                  originalUrl: URL.createObjectURL(file),
+                  compressedUrl: URL.createObjectURL(blob)
+                });
+              } else {
+                reject(new Error('Compression failed'));
+              }
+            },
+            file.type === 'image/png' ? 'image/png' : 'image/jpeg',
+            quality[0] / 100
+          );
+          
+          // Clean up
+          URL.revokeObjectURL(img.src);
+        } catch (error) {
+          reject(error);
         }
-
-        canvas.width = width;
-        canvas.height = height;
-
-        // Draw and compress
-        ctx?.drawImage(img, 0, 0, width, height);
-        
-        canvas.toBlob(
-          (blob) => {
-            if (blob) {
-              const compressionRatio = ((file.size - blob.size) / file.size) * 100;
-              
-              resolve({
-                original: file,
-                compressed: blob,
-                originalSize: file.size,
-                compressedSize: blob.size,
-                compressionRatio,
-                originalUrl: URL.createObjectURL(file),
-                compressedUrl: URL.createObjectURL(blob)
-              });
-            }
-          },
-          file.type === 'image/png' ? 'image/png' : 'image/jpeg',
-          quality[0] / 100
-        );
       };
 
+      img.onerror = () => reject(new Error('Failed to load image'));
       img.src = URL.createObjectURL(file);
     });
   };
@@ -77,11 +88,15 @@ const ImageCompressor = () => {
     
     if (files.length === 0) return;
 
-    // Validate files
-    const validFiles = files.filter(file => file.type.startsWith('image/'));
+    // Validate files and size limit
+    const validFiles = files.filter(file => {
+      const isImage = file.type.startsWith('image/');
+      const isValidSize = file.size <= 25 * 1024 * 1024; // 25MB limit
+      return isImage && isValidSize;
+    });
     
     if (validFiles.length !== files.length) {
-      toast.error("Seuls les fichiers image sont acceptés");
+      toast.error("Seuls les fichiers image sous 25MB sont acceptés");
     }
 
     if (validFiles.length === 0) return;
@@ -90,10 +105,19 @@ const ImageCompressor = () => {
     
     try {
       const processed = [];
+      const batchSize = 3; // Process in batches to avoid memory issues
       
-      for (const file of validFiles) {
-        const result = await compressImage(file);
-        processed.push(result);
+      for (let i = 0; i < validFiles.length; i += batchSize) {
+        const batch = validFiles.slice(i, i + batchSize);
+        const batchResults = await Promise.all(
+          batch.map(file => compressImage(file))
+        );
+        processed.push(...batchResults);
+        
+        // Small delay between batches
+        if (i + batchSize < validFiles.length) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+        }
       }
       
       setImages(processed);
